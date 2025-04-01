@@ -3,10 +3,17 @@ let canvas = document.getElementById("myCanvas");
 let ctx = canvas.getContext("2d");
 let isDrawing = false;
 
-ctx.fillStyle = "black";
+let lastX;
+let LastY;
+
+ctx.strokeStyle = "black";
+ctx.lineWidth = 2;
+ctx.lineCap = "round";
 
 canvas.addEventListener("mousedown", function (event) {
   console.log("mouse down");
+  lastX = event.offsetX;
+  lastY = event.offsetY;
   isDrawing = true;
 });
 canvas.addEventListener("mouseup", function (event) {
@@ -15,9 +22,16 @@ canvas.addEventListener("mouseup", function (event) {
 });
 canvas.addEventListener("mousemove", function (event) {
   if (isDrawing) {
+    console.log("drawing");
     let x = event.offsetX;
     let y = event.offsetY;
-    console.log("drawing");
-    ctx.fillRect(x, y, 1, 1);
+
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(x, y);
+    ctx.stroke();
+
+    lastX = x;
+    lastY = y;
   }
 });
