@@ -4,6 +4,7 @@
 }
 
 canvas {
+  transform: scale(7);
   transform-origin: top;
   display: block;
   margin: auto;

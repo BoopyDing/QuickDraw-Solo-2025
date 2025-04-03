@@ -9,13 +9,10 @@ ctx.webkitImageSmoothingEnabled = false;
 ctx.mozImageSmoothingEnabled = false;
 ctx.msImageSmoothingEnabled = false;
 
-let undoArray = [];
-let redoArray = [];
-
 let lastX;
 let LastY;
 
-let writingSize = 2;
+let writingSize;
 
 let writingColor = "black";
 
@@ -57,8 +54,6 @@ canvas.addEventListener("mousemove", function (event) {
     ctx.moveTo(lastX, lastY);
     ctx.lineTo(x, y);
     ctx.stroke();
-
-    undoArray.push([lastX, lastY, x, y]);
 
     lastX = x;
     lastY = y;
