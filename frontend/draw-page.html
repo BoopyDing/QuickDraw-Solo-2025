@@ -6,6 +6,11 @@
     <script src="draw-page.js" defer></script>
   </head>
   <body>
+    <button onclick="document.location='menu-page.html'">Home</button>
+    <button onclick="resetCanvas()">Reset</button>
+    <button onclick="pencil()">Pencil</button>
+    <button onclick="eraser()">Eraser</button>
+    <input type="range" min="1" max="20" value="2" id="myRange" />
     <canvas id="myCanvas" class="center" width="64" height="64"></canvas>
   </body>
 </html>
