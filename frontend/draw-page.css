@@ -1,0 +1,14 @@
+.center {
+  text-align: center;
+  border: 1px solid grey;
+}
+
+canvas {
+  transform: scale(7);
+  transform-origin: top;
+  display: block;
+  margin: auto;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  background-color: white;
+}
