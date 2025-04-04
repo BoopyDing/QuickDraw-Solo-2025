@@ -1,11 +1,21 @@
+body {
+  background-color: darkslategray;
+}
+
 .center {
-  text-align: center;
-  border: 1px solid grey;
 }
 
 canvas {
+  border: 1px solid black;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: white;
   transform: scale(7);
-  transform-origin: top;
+  transform-origin: center;
   display: block;
   margin: auto;
   image-rendering: crisp-edges;
