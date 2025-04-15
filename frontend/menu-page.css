@@ -1,25 +1,13 @@
-.bg-image {
-  background-image: url(https://64.media.tumblr.com/d967446f9273b01893a1dca9ee765f96/8be165d3d93f111d-24/s1280x1920/f5f3a733b00961f6de3433bd534c996da022d0fd.gifv);
-  filter: blur(5px);
-  -webkit-filter: blur(5x);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  /* Make it fill the entire screen */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1; /* So it stays in the background */
+body {
+  background-color: rgb(30, 30, 30);
 }
 
-.button {
+.button:hover {
   height: 64px;
   width: 128px;
+  color: green;
   font-size: x-large;
-  background-color: transparent;
+  background-color: rgb(0, 55, 0);
   font-family: Georgia, "Times New Roman", Times, serif;
   position: absolute;
   top: 50%;
@@ -27,6 +15,21 @@
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-.button.hover {
-  background-color: antiquewhite;
+
+.button1 {
+  border-radius: 12px;
+}
+
+.button {
+  height: 64px;
+  width: 128px;
+  color: green;
+  font-size: x-large;
+  background-color: black;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }

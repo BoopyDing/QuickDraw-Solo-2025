@@ -1,22 +1,53 @@
 import tensorflow as tf
-from tensorflow.keras import layers, models
+from tensorflow import keras
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+import matplotlib.pyplot as plt
+import base64
+import re
+import numpy as np
+from PIL import Image, ImageOps
+import io
 
-# Create the model
-model = models.Sequential([
-    layers.Conv2D(32, (3,3), activation='relu', input_shape=(28,28,1)),  # Detects edges
-    layers.MaxPooling2D(2,2),  # Reduces image size
-    layers.Conv2D(64, (3,3), activation='relu'),  # Detects more complex shapes
-    layers.MaxPooling2D(2,2),
-    layers.Flatten(),  # Flattens image data
-    layers.Dense(128, activation='relu'),  # Fully connected layer
-    layers.Dense(2, activation='softmax')  # Output: 2 categories (square/triangle)
-])
+app = Flask(__name__)
+CORS(app)
 
-# Compile the model
-model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+@app.route("/predict", methods=["POST"])
+def prediction():
+    model = keras.models.load_model("backend/model/my_model.keras")
+    
+    data = request.get_json()
 
-# Display model summary
-model.summary()
+    # Extract base64 string from data URL
+    img_data = re.sub('^data:image/.+;base64,', '', data['image'])
+    img_bytes = base64.b64decode(img_data)
+    # Load image with alpha (RGBA) first
+    image = Image.open(io.BytesIO(img_bytes)).convert("RGBA")
+
+    # Create white background
+    background = Image.new("RGBA", image.size, (255, 255, 255, 255))
+    image = Image.alpha_composite(background, image)
+
+    # Convert to grayscale
+    image = image.convert("L")
+    image = ImageOps.invert(image)
+
+    # Resize and preprocess if needed
+    image = image.resize((28, 28))
+    img_array = np.array(image).astype("float32") / 255.0
+
+    
+    img_array = img_array.reshape(1, 28, 28, 1)
+
+    # Get prediction from model
+    prediction = model.predict(img_array)
+    predicted_class = int(np.argmax(prediction))
+    
+    return jsonify({ 'prediction': predicted_class })
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
 
 
 
