@@ -1,9 +1,9 @@
 body {
-  background-color: rgb(30, 30, 30);
+  background-color: rgb(12, 12, 12);
 }
 
 canvas {
-  border: 1px solid green;
+  border: 1px solid black;
   margin: 0;
   position: absolute;
   top: 50%;
