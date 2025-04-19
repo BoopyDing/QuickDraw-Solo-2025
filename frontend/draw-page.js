@@ -128,7 +128,7 @@ async function printPrediction() {
       text = "T-Shirt";
       break;
     case 1:
-      text = "Pant";
+      text = "Pants";
       break;
     case 2:
       text = "Pullover";
